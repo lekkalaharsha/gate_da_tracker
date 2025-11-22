@@ -39,6 +39,33 @@ details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#f
 .subtopic-wrap{display:flex;align-items:center;gap:8px}
 .subtopic-name{flex:1}
 @media (max-width:760px){.table th,.table td{font-size:12px}}
+
+/* --- Mobile & touch improvements --- */
+.subtopic-wrap{flex-wrap:wrap}
+.btn{padding:10px 14px}
+.table{display:block;overflow:auto;-webkit-overflow-scrolling:touch;width:100%}
+.table th,.table td{min-width:140px}
+.table thead{display:block}
+.table tbody{display:block}
+.table tr{display:table;width:100%;table-layout:fixed}
+.note-field{font-size:14px}
+.date-cell{white-space:normal}
+@media (max-width:760px){
+  body{padding:10px}
+  .container{padding:0 8px}
+  .controls{flex-direction:column;align-items:stretch;gap:6px}
+  .controls .btn, .controls .ghost{width:100%;text-align:center}
+  .legend{margin-left:0;margin-top:8px}
+  h1{font-size:20px}
+  .card{padding:10px}
+  .table th,.table td{font-size:13px;min-width:120px}
+  .table{border:0}
+  .table th{background:transparent}
+  .footer{font-size:13px}
+  details summary{font-size:15px;padding:10px}
+  .archery-plan-detailed td{font-size:13px}
+  .note-field{font-size:14px}
+}
 </style>
 </head>
 <body>

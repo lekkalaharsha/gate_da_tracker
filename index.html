@@ -3,77 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>GATE DA Tracker — Updated Amplitudes (Probability → Programming) + GA</title>
-<style>
-:root{
-  --accent:#0078d7; --bg:#f6f9fa; --card:#fff; --border:#d0d3db; --text:#222;
-  --grand:#ffe5b6; --ok:#36d07b; --warn:#ffb86b; --bad:#ff6b6b;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);padding:18px}
-h1{color:var(--accent);text-align:center;margin:6px 0 18px}
-.container{max-width:1200px;margin:0 auto}
-.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;align-items:center}
-.btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
-.btn.ghost{background:#fff;color:var(--text);border:1px solid var(--border)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.details{margin-bottom:8px}
-details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#fff;padding:12px;border-radius:6px;cursor:pointer}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{border:1px solid var(--border);padding:8px;text-align:left;font-size:13px;vertical-align:middle}
-.table th{background:#f3f6f9}
-.progress{height:12px;background:#eee;border-radius:8px;overflow:hidden}
-.progress > span{height:100%;display:block;background:linear-gradient(90deg,#36d07b,#7c8cff);width:0%}
-.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#fff;border:1px solid var(--border);font-size:13px}
-.small{font-size:13px}
-.footer{color:#666;text-align:center;margin-top:18px;font-size:13px}
-.refresh-btn{background:none;border:0;font-size:20px;cursor:pointer}
-.note{width:100%;padding:6px;border:1px solid var(--border);border-radius:6px}
-.row-overdue{background:linear-gradient(90deg, rgba(255,107,107,0.06), rgba(255,107,107,0.02));}
-.row-due-soon{background:linear-gradient(90deg, rgba(255,184,107,0.05), rgba(255,184,107,0.02));}
-.row-done{background:linear-gradient(90deg, rgba(54,208,123,0.06), rgba(124,140,255,0.02));}
-.date-cell{white-space:nowrap;font-size:13px}
-.note-field{width:100%}
-.star{color:#f5b301;margin-left:6px;font-size:14px}
-.legend{font-size:13px;color:#444}
-.subtopic-wrap{display:flex;align-items:center;gap:8px}
-.subtopic-name{flex:1}
-@media (max-width:760px){.table th,.table td{font-size:12px}}
-
-/* --- Mobile & touch improvements --- */
-.subtopic-wrap{flex-wrap:wrap}
-.btn{padding:10px 14px}
-.table{display:block;overflow:auto;-webkit-overflow-scrolling:touch;width:100%}
-.table th,.table td{min-width:140px}
-.table thead{display:block}
-.table tbody{display:block}
-.table tr{display:table;width:100%;table-layout:fixed}
-.note-field{font-size:14px}
-.date-cell{white-space:normal}
-@media (max-width:760px){
-  body{padding:10px}
-  .container{padding:0 8px}
-  .controls{flex-direction:column;align-items:stretch;gap:6px}
-  .controls .btn, .controls .ghost{width:100%;text-align:center}
-  .legend{margin-left:0;margin-top:8px}
-  h1{font-size:20px}
-  .card{padding:10px}
-  .table th,.table td{font-size:13px;min-width:120px}
-  .table{border:0}
-  .table th{background:transparent}
-  .footer{font-size:13px}
-  details summary{font-size:15px;padding:10px}
-  .archery-plan-detailed td{font-size:13px}
-  .note-field{font-size:14px}
-}
-</style>
+<title>GATE DA Tracker </title>
+<link rel="stylesheet" href="app.css" />
 </head>
 <body>
-<!-- Uploaded file reference (for your convenience):
-     /mnt/data/GATE DA Prep Tracker.html
-     -->
 <div class="container">
-  <h1>GATE DA Tracker — Updated Amplitudes
+  <h1>GATE DA Tracker — Fixed Build
     <button class="refresh-btn" title="Reload" onclick="location.reload()">🔄</button>
   </h1>
 
@@ -83,6 +18,7 @@ details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#f
       Import CSV
       <input type="file" id="fileInput" accept=".csv" style="display:none">
     </label>
+    <button class="btn ghost" id="exportIcsBtn">Export Calendar (ICS)</button>
     <button class="btn ghost" id="clearStorage">Reset All</button>
     <button class="btn ghost" id="copySummary">Copy Summary</button>
 
@@ -107,7 +43,7 @@ details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#f
     <details open class="details">
       <summary><b>Probability &amp; Statistics</b></summary>
       <table class="table" id="topic-Probability & Statistics">
-        <thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
         <tbody></tbody>
       </table>
     </details>
@@ -115,37 +51,49 @@ details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#f
     <!-- Linear Algebra -->
     <details open class="details">
       <summary><b>Linear Algebra</b></summary>
-      <table class="table" id="topic-Linear Algebra"><thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead><tbody></tbody></table>
+      <table class="table" id="topic-Linear Algebra">
+        <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
     </details>
 
     <!-- Calculus & Optimization -->
     <details open class="details">
       <summary><b>Calculus &amp; Optimization</b></summary>
-      <table class="table" id="topic-Calculus & Optimization"><thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead><tbody></tbody></table>
+      <table class="table" id="topic-Calculus & Optimization">
+        <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
     </details>
 
     <!-- Programming / DS Algo -->
     <details open class="details">
       <summary><b>Programming / DS Algo</b></summary>
-      <table class="table" id="topic-Programming"><thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead><tbody></tbody></table>
+      <table class="table" id="topic-Programming">
+       <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
     </details>
 
     <!-- Database -->
     <details open class="details">
       <summary><b>Database</b></summary>
-      <table class="table" id="topic-Database"><thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead><tbody></tbody></table>
+      <table class="table" id="topic-Database"><thead>
+        <tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
     </details>
 
     <!-- Machine Learning -->
     <details open class="details">
       <summary><b>Machine Learning</b></summary>
-      <table class="table" id="topic-Machine Learning"><thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead><tbody></tbody></table>
+      <table class="table" id="topic-Machine Learning"><thead>
+        <tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
     </details>
 
     <!-- AI (trimmed) -->
     <details open class="details">
       <summary><b>AI (trimmed)</b></summary>
-      <table class="table" id="topic-AI"><thead><tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead><tbody></tbody></table>
+      <table class="table" id="topic-AI"><thead>
+        <tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
     </details>
 
       <!-- GA daily plan embedded inside syllabus card as requested -->
@@ -156,46 +104,103 @@ details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#f
         <table class="table" id="ga-daily-plan">
           <thead><tr><th>Date</th><th>Topic</th><th>Done</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td>2026-01-01</td><td>Verbal — Grammar basics</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-01"></td><td><input class="note-field" data-ga-note="2026-01-01" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-02</td><td>Quant — Number systems</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-02"></td><td><input class="note-field" data-ga-note="2026-01-02" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-03</td><td>Reasoning — Series &amp; patterns</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-03"></td><td><input class="note-field" data-ga-note="2026-01-03" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-04</td><td>Data Interpretation — Tables &amp; charts</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-04"></td><td><input class="note-field" data-ga-note="2026-01-04" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-05</td><td>Verbal — Para jumbles</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-05"></td><td><input class="note-field" data-ga-note="2026-01-05" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-06</td><td>Quant — Algebra basics</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-06"></td><td><input class="note-field" data-ga-note="2026-01-06" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-07</td><td>Reasoning — Blood relations</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-07"></td><td><input class="note-field" data-ga-note="2026-01-07" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-08</td><td>DI — Percentages in DI</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-08"></td><td><input class="note-field" data-ga-note="2026-01-08" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-09</td><td>Verbal — Reading comprehension (Set 1)</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-09"></td><td><input class="note-field" data-ga-note="2026-01-09" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-10</td><td>Quant — Ratios &amp; proportions</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-10"></td><td><input class="note-field" data-ga-note="2026-01-10" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-11</td><td>Reasoning — Coding-decoding</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-11"></td><td><input class="note-field" data-ga-note="2026-01-11" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-12</td><td>DI — Simple graphs</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-12"></td><td><input class="note-field" data-ga-note="2026-01-12" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-13</td><td>Verbal — Vocabulary (syn/ant)</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-13"></td><td><input class="note-field" data-ga-note="2026-01-13" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-14</td><td>Quant — Time &amp; work</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-14"></td><td><input class="note-field" data-ga-note="2026-01-14" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-15</td><td>Reasoning — Directions</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-15"></td><td><input class="note-field" data-ga-note="2026-01-15" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-16</td><td>DI — Mixed sets</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-16"></td><td><input class="note-field" data-ga-note="2026-01-16" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-17</td><td>Verbal — Error spotting</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-17"></td><td><input class="note-field" data-ga-note="2026-01-17" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-18</td><td>Quant — Percentages</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-18"></td><td><input class="note-field" data-ga-note="2026-01-18" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-19</td><td>Reasoning — Analogies</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-19"></td><td><input class="note-field" data-ga-note="2026-01-19" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-20</td><td>DI — Combined DI</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-20"></td><td><input class="note-field" data-ga-note="2026-01-20" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-21</td><td>Verbal — Synonyms/antonyms practice</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-21"></td><td><input class="note-field" data-ga-note="2026-01-21" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-22</td><td>Quant — Time/speed/distance</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-22"></td><td><input class="note-field" data-ga-note="2026-01-22" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-23</td><td>Reasoning — Non-verbal</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-23"></td><td><input class="note-field" data-ga-note="2026-01-23" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-24</td><td>DI — Caselets</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-24"></td><td><input class="note-field" data-ga-note="2026-01-24" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-25</td><td>Verbal — Reading comprehension (Set 2)</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-25"></td><td><input class="note-field" data-ga-note="2026-01-25" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-26</td><td>Quant — Profit &amp; loss</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-26"></td><td><input class="note-field" data-ga-note="2026-01-26" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-27</td><td>Reasoning — Puzzles</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-27"></td><td><input class="note-field" data-ga-note="2026-01-27" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-28</td><td>DI — Data comparison</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-28"></td><td><input class="note-field" data-ga-note="2026-01-28" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-29</td><td>Verbal — Cloze test</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-29"></td><td><input class="note-field" data-ga-note="2026-01-29" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-30</td><td>Quant — Mixed practice set</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-30"></td><td><input class="note-field" data-ga-note="2026-01-30" placeholder="notes..."></td></tr>
-            <tr><td>2026-01-31</td><td>Reasoning — Combined reasoning test</td><td style="text-align:center"><input type="checkbox" data-ga="2026-01-31"></td><td><input class="note-field" data-ga-note="2026-01-31" placeholder="notes..."></td></tr>
-            <tr><td>2026-02-01</td><td>DI — Revision + speed test</td><td style="text-align:center"><input type="checkbox" data-ga="2026-02-01"></td><td><input class="note-field" data-ga-note="2026-02-01" placeholder="notes..."></td></tr>
+            <tr><td>2026-01-01</td><td>Verbal — Grammar basics</td><td style="text-align:center"><input id="ga-2026-01-01" type="checkbox" data-ga="2026-01-01" aria-label="GA 2026-01-01"></td><td><input class="note-field" data-ga-note="2026-01-01" placeholder="notes..." aria-label="GA note 2026-01-01"></td></tr>
+            <tr><td>2026-01-02</td><td>Quant — Number systems</td><td style="text-align:center"><input id="ga-2026-01-02" type="checkbox" data-ga="2026-01-02" aria-label="GA 2026-01-02"></td><td><input class="note-field" data-ga-note="2026-01-02" placeholder="notes..." aria-label="GA note 2026-01-02"></td></tr>
+            <tr><td>2026-01-03</td><td>Reasoning — Series &amp; patterns</td><td style="text-align:center"><input id="ga-2026-01-03" type="checkbox" data-ga="2026-01-03" aria-label="GA 2026-01-03"></td><td><input class="notice note-field" data-ga-note="2026-01-03" placeholder="notes..." aria-label="GA note 2026-01-03"></td></tr>
+            <tr><td>2026-01-04</td><td>Data Interpretation — Tables &amp; charts</td><td style="text-align:center"><input id="ga-2026-01-04" type="checkbox" data-ga="2026-01-04" aria-label="GA 2026-01-04"></td><td><input class="note-field" data-ga-note="2026-01-04" placeholder="notes..." aria-label="GA note 2026-01-04"></td></tr>
+            <tr><td>2026-01-05</td><td>Verbal — Para jumbles</td><td style="text-align:center"><input id="ga-2026-01-05" type="checkbox" data-ga="2026-01-05" aria-label="GA 2026-01-05"></td><td><input class="note-field" data-ga-note="2026-01-05" placeholder="notes..." aria-label="GA note 2026-01-05"></td></tr>
+            <tr><td>2026-01-06</td><td>Quant — Algebra basics</td><td style="text-align:center"><input id="ga-2026-01-06" type="checkbox" data-ga="2026-01-06" aria-label="GA 2026-01-06"></td><td><input class="note-field" data-ga-note="2026-01-06" placeholder="notes..." aria-label="GA note 2026-01-06"></td></tr>
+            <tr><td>2026-01-07</td><td>Reasoning — Blood relations</td><td style="text-align:center"><input id="ga-2026-01-07" type="checkbox" data-ga="2026-01-07" aria-label="GA 2026-01-07"></td><td><input class="note-field" data-ga-note="2026-01-07" placeholder="notes..." aria-label="GA note 2026-01-07"></td></tr>
+            <tr><td>2026-01-08</td><td>DI — Percentages in DI</td><td style="text-align:center"><input id="ga-2026-01-08" type="checkbox" data-ga="2026-01-08" aria-label="GA 2026-01-08"></td><td><input class="note-field" data-ga-note="2026-01-08" placeholder="notes..." aria-label="GA note 2026-01-08"></td></tr>
+            <tr><td>2026-01-09</td><td>Verbal — Reading comprehension (Set 1)</td><td style="text-align:center"><input id="ga-2026-01-09" type="checkbox" data-ga="2026-01-09" aria-label="GA 2026-01-09"></td><td><input class="note-field" data-ga-note="2026-01-09" placeholder="notes..." aria-label="GA note 2026-01-09"></td></tr>
+            <tr><td>2026-01-10</td><td>Quant — Ratios &amp; proportions</td><td style="text-align:center"><input id="ga-2026-01-10" type="checkbox" data-ga="2026-01-10" aria-label="GA 2026-01-10"></td><td><input class="note-field" data-ga-note="2026-01-10" placeholder="notes..." aria-label="GA note 2026-01-10"></td></tr>
+            <tr><td>2026-01-11</td><td>Reasoning — Coding-decoding</td><td style="text-align:center"><input id="ga-2026-01-11" type="checkbox" data-ga="2026-01-11" aria-label="GA 2026-01-11"></td><td><input class="note-field" data-ga-note="2026-01-11" placeholder="notes..." aria-label="GA note 2026-01-11"></td></tr>
+            <tr><td>2026-01-12</td><td>DI — Simple graphs</td><td style="text-align:center"><input id="ga-2026-01-12" type="checkbox" data-ga="2026-01-12" aria-label="GA 2026-01-12"></td><td><input class="note-field" data-ga-note="2026-01-12" placeholder="notes..." aria-label="GA note 2026-01-12"></td></tr>
+            <tr><td>2026-01-13</td><td>Verbal — Vocabulary (syn/ant)</td><td style="text-align:center"><input id="ga-2026-01-13" type="checkbox" data-ga="2026-01-13" aria-label="GA 2026-01-13"></td><td><input class="note-field" data-ga-note="2026-01-13" placeholder="notes..." aria-label="GA note 2026-01-13"></td></tr>
+            <tr><td>2026-01-14</td><td>Quant — Time &amp; work</td><td style="text-align:center"><input id="ga-2026-01-14" type="checkbox" data-ga="2026-01-14" aria-label="GA 2026-01-14"></td><td><input class="note-field" data-ga-note="2026-01-14" placeholder="notes..." aria-label="GA note 2026-01-14"></td></tr>
+            <tr><td>2026-01-15</td><td>Reasoning — Directions</td><td style="text-align:center"><input id="ga-2026-01-15" type="checkbox" data-ga="2026-01-15" aria-label="GA 2026-01-15"></td><td><input class="note-field" data-ga-note="2026-01-15" placeholder="notes..." aria-label="GA note 2026-01-15"></td></tr>
+            <tr><td>2026-01-16</td><td>DI — Mixed sets</td><td style="text-align:center"><input id="ga-2026-01-16" type="checkbox" data-ga="2026-01-16" aria-label="GA 2026-01-16"></td><td><input class="note-field" data-ga-note="2026-01-16" placeholder="notes..." aria-label="GA note 2026-01-16"></td></tr>
+            <tr><td>2026-01-17</td><td>Verbal — Error spotting</td><td style="text-align:center"><input id="ga-2026-01-17" type="checkbox" data-ga="2026-01-17" aria-label="GA 2026-01-17"></td><td><input class="note-field" data-ga-note="2026-01-17" placeholder="notes..." aria-label="GA note 2026-01-17"></td></tr>
+            <tr><td>2026-01-18</td><td>Quant — Percentages</td><td style="text-align:center"><input id="ga-2026-01-18" type="checkbox" data-ga="2026-01-18" aria-label="GA 2026-01-18"></td><td><input class="note-field" data-ga-note="2026-01-18" placeholder="notes..." aria-label="GA note 2026-01-18"></td></tr>
+            <tr><td>2026-01-19</td><td>Reasoning — Analogies</td><td style="text-align:center"><input id="ga-2026-01-19" type="checkbox" data-ga="2026-01-19" aria-label="GA 2026-01-19"></td><td><input class="note-field" data-ga-note="2026-01-19" placeholder="notes..." aria-label="GA note 2026-01-19"></td></tr>
+            <tr><td>2026-01-20</td><td>DI — Combined DI</td><td style="text-align:center"><input id="ga-2026-01-20" type="checkbox" data-ga="2026-01-20" aria-label="GA 2026-01-20"></td><td><input class="note-field" data-ga-note="2026-01-20" placeholder="notes..." aria-label="GA note 2026-01-20"></td></tr>
+            <tr><td>2026-01-21</td><td>Verbal — Synonyms/antonyms practice</td><td style="text-align:center"><input id="ga-2026-01-21" type="checkbox" data-ga="2026-01-21" aria-label="GA 2026-01-21"></td><td><input class="note-field" data-ga-note="2026-01-21" placeholder="notes..." aria-label="GA note 2026-01-21"></td></tr>
+            <tr><td>2026-01-22</td><td>Quant — Time/speed/distance</td><td style="text-align:center"><input id="ga-2026-01-22" type="checkbox" data-ga="2026-01-22" aria-label="GA 2026-01-22"></td><td><input class="note-field" data-ga-note="2026-01-22" placeholder="notes..." aria-label="GA note 2026-01-22"></td></tr>
+            <tr><td>2026-01-23</td><td>Reasoning — Non-verbal</td><td style="text-align:center"><input id="ga-2026-01-23" type="checkbox" data-ga="2026-01-23" aria-label="GA 2026-01-23"></td><td><input class="note-field" data-ga-note="2026-01-23" placeholder="notes..." aria-label="GA note 2026-01-23"></td></tr>
+            <tr><td>2026-01-24</td><td>DI — Caselets</td><td style="text-align:center"><input id="ga-2026-01-24" type="checkbox" data-ga="2026-01-24" aria-label="GA 2026-01-24"></td><td><input class="note-field" data-ga-note="2026-01-24" placeholder="notes..." aria-label="GA note 2026-01-24"></td></tr>
+            <tr><td>2026-01-25</td><td>Verbal — Reading comprehension (Set 2)</td><td style="text-align:center"><input id="ga-2026-01-25" type="checkbox" data-ga="2026-01-25" aria-label="GA 2026-01-25"></td><td><input class="note-field" data-ga-note="2026-01-25" placeholder="notes..." aria-label="GA note 2026-01-25"></td></tr>
+            <tr><td>2026-01-26</td><td>Quant — Profit &amp; loss</td><td style="text-align:center"><input id="ga-2026-01-26" type="checkbox" data-ga="2026-01-26" aria-label="GA 2026-01-26"></td><td><input class="note-field" data-ga-note="2026-01-26" placeholder="notes..." aria-label="GA note 2026-01-26"></td></tr>
+            <tr><td>2026-01-27</td><td>Reasoning — Puzzles</td><td style="text-align:center"><input id="ga-2026-01-27" type="checkbox" data-ga="2026-01-27" aria-label="GA 2026-01-27"></td><td><input class="note-field" data-ga-note="2026-01-27" placeholder="notes..." aria-label="GA note 2026-01-27"></td></tr>
+            <tr><td>2026-01-28</td><td>DI — Data comparison</td><td style="text-align:center"><input id="ga-2026-01-28" type="checkbox" data-ga="2026-01-28" aria-label="GA 2026-01-28"></td><td><input class="note-field" data-ga-note="2026-01-28" placeholder="notes..." aria-label="GA note 2026-01-28"></td></tr>
+            <tr><td>2026-01-29</td><td>Verbal — Cloze test</td><td style="text-align:center"><input id="ga-2026-01-29" type="checkbox" data-ga="2026-01-29" aria-label="GA 2026-01-29"></td><td><input class="note-field" data-ga-note="2026-01-29" placeholder="notes..." aria-label="GA note 2026-01-29"></td></tr>
+            <tr><td>2026-01-30</td><td>Quant — Mixed practice set</td><td style="text-align:center"><input id="ga-2026-01-30" type="checkbox" data-ga="2026-01-30" aria-label="GA 2026-01-30"></td><td><input class="note-field" data-ga-note="2026-01-30" placeholder="notes..." aria-label="GA note 2026-01-30"></td></tr>
+            <tr><td>2026-01-31</td><td>Reasoning — Combined reasoning test</td><td style="text-align:center"><input id="ga-2026-01-31" type="checkbox" data-ga="2026-01-31" aria-label="GA 2026-01-31"></td><td><input class="note-field" data-ga-note="2026-01-31" placeholder="notes..." aria-label="GA note 2026-01-31"></td></tr>
+            <tr><td>2026-02-01</td><td>DI — Revision + speed test</td><td style="text-align:center"><input id="ga-2026-02-01" type="checkbox" data-ga="2026-02-01" aria-label="GA 2026-02-01"></td><td><input class="note-field" data-ga-note="2026-02-01" placeholder="notes..." aria-label="GA note 2026-02-01"></td></tr>
           </tbody>
         </table>
-
-        <p class="small" style="margin-top:8px">Reference syllabus uploaded: <a href="/mnt/data/GATE _GA_2025_Syllabus.pdf">GATE_GA_2025_Syllabus.pdf</a>. :contentReference[oaicite:1]{index=1}</p>
       </div>
+            <!-- Programming / DS Algo daily plan embedded inside syllabus card as requested -->
+    <div style="margin-top:12px">
+        <h4 style="margin:8px 0 6px">Programming / DS Algo AND ML — Daily Plan (dec 01 → dec 30)</h4>
+        <p class="small">Daily: <b>30 minutes</b> </p>
+
+        <table class="table" id="prog-daily-plan">
+          <thead><tr><th>Date</th><th>Topic</th><th>Done</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>2025-12-01</td><td>Programming / DS Algo —Programming in Python</td><td style="text-align:center"><input id="ga-2025-12-01" type="checkbox" data-ga="2025-12-01" aria-label="GA 2025-12-01"></td><td><input class="note-field" data-ga-note="2025-12-01" placeholder="notes..." aria-label="GA note 2025-12-01"></td></tr>
+            <tr><td>2025-12-02</td><td>Programming / DS Algo — Programming in Python</td><td style="text-align:center"><input id="ga-2025-12-02" type="checkbox" data-ga="2025-12-02" aria-label="GA 2025-12-02"></td><td><input class="note-field" data-ga-note="2025-12-02" placeholder="notes..." aria-label="GA note 2025-12-02"></td></tr>
+            <tr><td>2025-12-03</td><td>Programming / DS Algo — Programming in Python</td><td style="text-align:center"><input id="ga-2025-12-03" type="checkbox" data-ga="2025-12-03" aria-label="GA 2025-12-03"></td><td><input class="notice note-field" data-ga-note="2025-12-03" placeholder="notes..." aria-label="GA note 2025-12-03"></td></tr>
+            <tr><td>2025-12-04</td><td>Programming / DS Algo — Stacks</td><td style="text-align:center"><input id="ga-2025-12-04" type="checkbox" data-ga="2025-12-04" aria-label="GA 2025-12-04"></td><td><input class="note-field" data-ga-note="2025-12-04" placeholder="notes..." aria-label="GA note 2025-12-04"></td></tr>
+            <tr><td>2025-12-05</td><td>Programming / DS Algo — Queues</td><td style="text-align:center"><input id="ga-2025-12-05" type="checkbox" data-ga="2025-12-05" aria-label="GA 2025-12-05"></td><td><input class="note-field" data-ga-note="2025-12-05" placeholder="notes..." aria-label="GA note 2025-12-05"></td></tr>
+            <tr><td>2025-12-06</td><td>Programming / DS Algo — Linear search &amp; Binary search </td><td style="text-align:center"><input id="ga-2025-12-06" type="checkbox" data-ga="2025-12-06" aria-label="GA 2025-12-06"></td><td><input class="note-field" data-ga-note="2025-12-06" placeholder="notes..." aria-label="GA note 2025-12-06"></td></tr>
+            <tr><td>2025-12-07</td><td>Programming / DS Algo — Selection sort </td><td style="text-align:center"><input id="ga-2025-12-07" type="checkbox" data-ga="2025-12-07" aria-label="GA 2025-12-07"></td><td><input class="note-field" data-ga-note="2025-12-07" placeholder="notes..." aria-label="GA note 2025-12-07"></td></tr>
+            <tr><td>2025-12-08</td><td>Programming / DS Algo — Bubble sort </td><td style="text-align:center"><input id="ga-2025-12-08" type="checkbox" data-ga="2025-12-08" aria-label="GA 2025-12-08"></td><td><input class="note-field" data-ga-note="2025-12-08" placeholder="notes..." aria-label="GA note 2025-12-08"></td></tr>
+            <tr><td>2025-12-09</td><td>Programming / DS Algo — Insertion sort </td><td style="text-align:center"><input id="ga-2025-12-09" type="checkbox" data-ga="2025-12-09" aria-label="GA 2025-12-09"></td><td><input class="note-field" data-ga-note="2025-12-09" placeholder="notes..." aria-label="GA note 2025-12-09"></td></tr>
+            <tr><td>2025-12-10</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-10" type="checkbox" data-ga="2025-12-10" aria-label="GA 2025-12-10"></td><td><input class="note-field" data-ga-note="2025-12-10" placeholder="notes..." aria-label="GA note 2025-12-10"></td></tr>
+            <tr><td>2025-12-11</td><td>Programming / DS Algo— PYPQS</td><td style="text-align:center"><input id="ga-2025-12-11" type="checkbox" data-ga="2025-12-11" aria-label="GA 2025-12-11"></td><td><input class="note-field" data-ga-note="2025-12-11" placeholder="notes..." aria-label="GA note 2025-12-11"></td></tr>
+            <tr><td>2025-12-12</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-12" type="checkbox" data-ga="2025-12-12" aria-label="GA 2025-12-12"></td><td><input class="note-field" data-ga-note="2025-12-12" placeholder="notes..." aria-label="GA note 2025-12-12"></td></tr>
+            <tr><td>2025-12-13</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-13" type="checkbox" data-ga="2025-12-13" aria-label="GA 2025-12-13"></td><td><input class="note-field" data-ga-note="2025-12-13" placeholder="notes..." aria-label="GA note 2025-12-13"></td></tr>
+            <tr><td>2025-12-14</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-14" type="checkbox" data-ga="2025-12-14" aria-label="GA 2025-12-14"></td><td><input class="note-field" data-ga-note="2025-12-14" placeholder="notes..." aria-label="GA note 2025-12-14"></td></tr>
+            <tr><td>2025-12-15</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-15" type="checkbox" data-ga="2025-12-15" aria-label="GA 2025-12-15"></td><td><input class="note-field" data-ga-note="2025-12-15" placeholder="notes..." aria-label="GA note 2025-12-15"></td></tr>
+            <tr><td>2025-12-16</td><td>ML — Regression problems </td><td style="text-align:center"><input id="ga-2025-12-16" type="checkbox" data-ga="2025-12-16" aria-label="GA 2025-12-16"></td><td><input class="note-field" data-ga-note="2025-12-16" placeholder="notes..." aria-label="GA note 2025-12-16"></td></tr>
+            <tr><td>2025-12-17</td><td>ML — Classification problems </td><td style="text-align:center"><input id="ga-2025-12-17" type="checkbox" data-ga="2025-12-17" aria-label="GA 2025-12-17"></td><td><input class="note-field" data-ga-note="2025-12-17" placeholder="notes..." aria-label="GA note 2025-12-17"></td></tr>
+            <tr><td>2025-12-18</td><td>ML — Simple linear regression</td><td style="text-align:center"><input id="ga-2025-12-18" type="checkbox" data-ga="2025-12-18" aria-label="GA 2025-12-18"></td><td><input class="note-field" data-ga-note="2025-12-18" placeholder="notes..." aria-label="GA note 2025-12-18"></td></tr>
+            <tr><td>2025-12-19</td><td>ML — Multiple linear regression</td><td style="text-align:center"><input id="ga-2025-12-19" type="checkbox" data-ga="2025-12-19" aria-label="GA 2025-12-19"></td><td><input class="note-field" data-ga-note="2025-12-19" placeholder="notes..." aria-label="GA note 2025-12-19"></td></tr>
+            <tr><td>2025-12-20</td><td>ML — Ridge regression</td><td style="text-align:center"><input id="ga-2025-12-20" type="checkbox" data-ga="2025-12-20" aria-label="GA 2025-12-20"></td><td><input class="note-field" data-ga-note="2025-12-20" placeholder="notes..." aria-label="GA note 2025-12-20"></td></tr>
+            <tr><td>2025-12-21</td><td>ML — Logistic regression</td><td style="text-align:center"><input id="ga-2025-12-21" type="checkbox" data-ga="2025-12-21" aria-label="GA 2025-12-21"></td><td><input class="note-field" data-ga-note="2025-12-21" placeholder="notes..." aria-label="GA note 2025-12-21"></td></tr>
+            <tr><td>2025-12-22</td><td>ML — k-nearest neighbour</td><td style="text-align:center"><input id="ga-2025-12-22" type="checkbox" data-ga="2025-12-22" aria-label="GA 2025-12-22"></td><td><input class="note-field" data-ga-note="2025-12-22" placeholder="notes..." aria-label="GA note 2025-12-22"></td></tr>
+            <tr><td>2025-12-23</td><td>ML — Naive Bayes classifier</td><td style="text-align:center"><input id="ga-2025-12-23" type="checkbox" data-ga="2025-12-23" aria-label="GA 2025-12-23"></td><td><input class="note-field" data-ga-note="2025-12-23" placeholder="notes..." aria-label="GA note 2025-12-23"></td></tr>
+            <tr><td>2025-12-24</td><td>ML — Linear discriminant analysis</td><td style="text-align:center"><input id="ga-2025-12-24" type="checkbox" data-ga="2025-12-24" aria-label="GA 2025-12-24"></td><td><input class="note-field" data-ga-note="2025-12-24" placeholder="notes..." aria-label="GA note 2025-12-24"></td></tr>
+            <tr><td>2025-12-25</td><td>ML — Support vector machine</td><td style="text-align:center"><input id="ga-2025-12-25" type="checkbox" data-ga="2025-12-25" aria-label="GA 2025-12-25"></td><td><input class="note-field" data-ga-note="2025-12-25" placeholder="notes..." aria-label="GA note 2025-12-25"></td></tr>
+            <tr><td>2025-12-26</td><td>ML — Decision trees</td><td style="text-align:center"><input id="ga-2025-12-26" type="checkbox" data-ga="2025-12-26" aria-label="GA 2025-12-26"></td><td><input class="note-field" data-ga-note="2025-12-26" placeholder="notes..." aria-label="GA note 2025-12-26"></td></tr>
+            <tr><td>2025-12-27</td><td>ML — Bias-variance trade-off</td><td style="text-align:center"><input id="ga-2025-12-27" type="checkbox" data-ga="2025-12-27" aria-label="GA 2025-12-27"></td><td><input class="note-field" data-ga-note="2025-12-27" placeholder="notes..." aria-label="GA note 2025-12-27"></td></tr>
+            <tr><td>2025-12-28</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-28" type="checkbox" data-ga="2025-12-28" aria-label="GA 2025-12-28"></td><td><input class="note-field" data-ga-note="2025-12-28" placeholder="notes..." aria-label="GA note 2025-12-28"></td></tr>
+            <tr><td>2025-12-29</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-29" type="checkbox" data-ga="2025-12-29" aria-label="GA 2025-12-29"></td><td><input class="note-field" data-ga-note="2025-12-29" placeholder="notes..." aria-label="GA note 2025-12-29"></td></tr>
+            <tr><td>2025-12-30</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-30" type="checkbox" data-ga="2025-12-30" aria-label="GA 2025-12-30"></td><td><input class="note-field" data-ga-note="2025-12-30" placeholder="notes..." aria-label="GA note 2025-12-30"></td></tr>
+            <tr><td>2025-12-31</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-31" type="checkbox" data-ga="2025-12-31" aria-label="GA 2025-12-31"></td><td><input class="note-field" data-ga-note="2025-12-31" placeholder="notes..." aria-label="GA note 2025-12-31"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      
     </details>
 
+  <div class="card" id="revisionCalendarCard">
+    <h3 style="margin:0 0 12px">📘 Final Revision & Mock-Test Daily Calendar (30 Jan → 14 Feb)</h3>
+    <p class="small">Automatically generated from your ★ / ★★ priorities + Final-Rev dates.</p>
+
+    <table class="table" id="revisionCalendarTable">
+      <thead>
+        <tr>
+          <th style="width:120px">Date</th>
+          <th>Revision Tasks</th>
+          <th style="width:120px">Mock Test</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
+
+
 
   <!-- Archery schedule + detailed plan -->
   <div class="card">
@@ -240,625 +245,8 @@ details summary{background:linear-gradient(90deg,var(--accent),#36b0ff);color:#f
     </ul>
   </div>
 
-  <div class="footer">Saved locally in browser. Want these dates exported or visualized as a calendar? I can add that.</div>
+  <div class="footer">Saved locally in browser. Want these dates exported or visualized as a calendar? Use "Export Calendar (ICS)".</div>
 </div>
-
-<script>
-/* -------------------------
-   Syllabus arrays (AI trimmed to top frequent topics)
-------------------------- */
-window.P_STATS = [
-  'Counting (permutations and combinations)','Probability axioms','Sample space','Events','Independent events','Mutually exclusive events',
-  'Marginal probability','Conditional probability','Joint probability','Bayes Theorem','Conditional expectation and variance','Mean','Median','Mode',
-  'Standard deviation','Correlation','Covariance','Random variables','Discrete random variables','Probability mass functions',
-  'Uniform distribution (discrete)','Bernoulli distribution','Binomial distribution','Continuous random variables','Probability distribution function',
-  'Uniform distribution (continuous)','Exponential distribution','Poisson distribution','Normal distribution','Standard normal distribution',
-  't-distribution','Chi-squared distributions','Cumulative distribution function','Conditional PDF','Central limit theorem','Confidence interval',
-  'z-test','t-test','Chi-squared test'
-];
-
-window.LA = ['Vector space','Subspaces','Linear dependence and independence of vectors','Matrices','Projection matrix','Orthogonal matrix','Idempotent matrix','Partition matrix and their properties','Quadratic forms','Systems of linear equations','Gaussian elimination','Eigenvalues','Eigenvectors','Determinant','Rank','Nullity','Projections','LU decomposition','Singular value decomposition'];
-
-window.CALC = ['Functions of a single variable','Limit','Continuity','Differentiability','Taylor series','Maxima and minima','Optimization involving a single variable'];
-
-window.PROG = ['Programming in Python','Stacks','Queues','Linked lists','Trees','Hash tables','Linear search','Binary search','Selection sort','Bubble sort','Insertion sort','Mergesort','Quicksort','Introduction to graph theory','Graph traversals','Shortest path algorithms'];
-
-window.DB = ['ER-model','Relational model','Relational algebra','Tuple calculus','SQL','Integrity constraints','Normal form','File organization','Indexing','Data types','Normalization','Discretization','Sampling','Compression','Data warehouse modelling','Schema for multidimensional data models','Concept hierarchies','Measures: categorization and computations'];
-
-window.ML = ['Regression problems','Classification problems','Simple linear regression','Multiple linear regression','Ridge regression','Logistic regression','k-nearest neighbour','Naive Bayes classifier','Linear discriminant analysis','Support vector machine','Decision trees','Bias-variance trade-off','Cross-validation methods','LOO cross-validation','k-folds cross-validation','Multi-layer perceptron','Feed-forward neural network','Clustering algorithms','k-means','k-medoid','Hierarchical clustering','Top-down clustering','Bottom-up clustering','Single-linkage','Multiple-linkage','Dimensionality reduction','Principal component analysis'];
-
-window.AI = [
-  'Informed search',
-  'Uninformed search',
-  'Adversarial search',
-  'Propositional logic',
-  'Predicate logic',
-  'Reasoning under uncertainty',
-  'Conditional independence representation',
-  'Exact inference through variable elimination',
-  'Approximate inference through sampling'
-];
-
-/* -------------------------
-   General Aptitude (GA) — parsed from uploaded syllabus PDF
-   Source file: /mnt/data/GATE _GA_2025_Syllabus.pdf
-------------------------- */
-
-/* -------------------------
-   IMPORTANCE (0,1,2)
-------------------------- */
-const IMPORTANCE = {
-  'Probability & Statistics': [1,0,0,1,1,0,0,1,1,2,1,1,0,1,0,0,1,0,0,0,0,1,0,0,1,2,2,1,1,0,0,0,0],
-  'Linear Algebra': [1,0,1,1,1,1,0,0,1,1,1,2,2,1,1,1,1,1,1],
-  'Calculus & Optimization': [1,1,1,1,1,1,1],
-  'Programming': [0,1,1,1,2,2,0,1,0,0,0,2,2,1,2,2],
-  'Database': [1,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0],
-  'Machine Learning': [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,2],
-  'AI': [1,1,1,1,1,1,1,1,1],
-};
-
-/* -------------------------
-   Scheduling config
-------------------------- */
-const studyStart = new Date('2025-11-19'); // inclusive
-const studyEnd   = new Date('2026-02-03'); // inclusive
-const finalRevWindowStart = new Date('2026-02-04');
-const finalRevWindowEnd = new Date('2026-02-14');
-const rev1OffsetDays = 10;
-
-/* Archery */
-const archeryStart = new Date('2025-12-01');
-const archeryWeeks = 12;
-const archeryWeekdays = [3,4,6,0]; // Wed, Thu, Sat, Sun
-
-/* GA habit (Jan 01 → Feb 01 as requested, included inside syllabus card) */
-const gaHabitStart = new Date('2026-01-01');
-const gaHabitEnd = new Date('2026-02-01');
-
-/* Amplitude (days) - UPDATED per your previous request: */
-const oldAmplitude = {
-  'Probability & Statistics': 12,
-  'Linear Algebra': 9,
-  'Calculus & Optimization': 9,
-  'Programming': 15,
-  'Database': 9,
-  'Machine Learning': 14,
-  'AI': 9
-};
-
-const amplitude = {
-  'Probability & Statistics': 9,   // reduced to finish on 2025-11-27 (Nov19..Nov27 inclusive)
-  'Linear Algebra': 10,
-  'Calculus & Optimization': 9,
-  'Programming': 18,               // increased by 3 days (from 15 -> 18)
-  'Database': 9,
-  'Machine Learning': 12,
-  'AI': 9
-};
-
-const oldTotalStudyDays = Object.values(oldAmplitude).reduce((a,b)=>a+b,0);
-const newTotalStudyDays = Object.values(amplitude).reduce((a,b)=>a+b,0);
-const practiceAllocationDays = Math.max(0, oldTotalStudyDays - newTotalStudyDays); // days freed up to allocate to practice
-
-/* storage prefix & helpers */
-const canonicalPrefix = 'GATE_DA::';
-function makeKey(topic, idx, type){ return `${canonicalPrefix}${topic}::${idx}::${type}`; }
-function makeArcheryKey(dateStr){ return `${canonicalPrefix}archery::${dateStr}`; }
-function makeGAKey(dateStr){ return `${canonicalPrefix}ga::${dateStr}`; }
-function makeGANoteKey(dateStr){ return `${canonicalPrefix}ga_note::${dateStr}`; }
-function addDays(d,n){ const x=new Date(d.getTime()); x.setDate(x.getDate()+n); return x; }
-function formatDate(d){ if(!d) return ''; return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-
-/* topic normalization */
-function topicKeyFromSummary(summary){
-  const s = (summary||'').toLowerCase();
-  if (s.includes('probability')) return 'Probability & Statistics';
-  if (s.includes('linear algebra')) return 'Linear Algebra';
-  if (s.includes('calculus')) return 'Calculus & Optimization';
-  if (s.includes('programming')) return 'Programming';
-  if (s.includes('database')) return 'Database';
-  if (s.includes('machine learning')) return 'Machine Learning';
-  if (s.includes('ai') && !s.includes('machine learning')) return 'AI';
-  return summary;
-}
-
-/* -------------------------
-   CSV parser (robust for our export format)
-------------------------- */
-function parseCSV(text){
-  const rows = [];
-  let i=0, len=text.length;
-  let row=[], field='';
-  let inQuotes=false;
-  while(i < len){
-    const ch = text[i];
-    if (inQuotes){
-      if (ch === '"'){
-        if (i+1 < len && text[i+1] === '"'){ field += '"'; i+=2; continue; } // escaped quote
-        else { inQuotes = false; i++; continue; }
-      } else {
-        field += ch; i++; continue;
-      }
-    } else {
-      if (ch === '"'){ inQuotes = true; i++; continue; }
-      if (ch === ','){ row.push(field); field=''; i++; continue; }
-      if (ch === '\r'){ i++; continue; }
-      if (ch === '\n'){ row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
-      field += ch; i++; continue;
-    }
-  }
-  if (field !== '' || row.length>0){ row.push(field); rows.push(row); }
-  return rows;
-}
-
-/* -------------------------
-   Render functions (with importance column and validation)
-------------------------- */
-function renderTopicArray(topic, arr){
-  const table = document.getElementById('topic-'+topic);
-  if (!table) return;
-  const tbody = table.querySelector('tbody');
-  tbody.innerHTML = '';
-  const impArr = IMPORTANCE[topic] || [];
-  if (impArr.length && impArr.length !== arr.length){
-    console.warn(`IMPORTANCE length (${impArr.length}) for "${topic}" does not match subtopic count (${arr.length}). Missing entries will be treated as 0.`);
-  }
-  arr.forEach((s, i)=>{
-    const imp = impArr[i] || 0;
-    let starHtml = '';
-    if (imp === 1) starHtml = '<span class="star" title="Important">★</span>';
-    else if (imp === 2) starHtml = '<span class="star" title="Very important">★★</span>';
-    const tr = document.createElement('tr');
-    tr.dataset.topic = topic;
-    tr.dataset.idx = i;
-    tr.innerHTML = `<td><div class="subtopic-wrap"><div class="subtopic-name">${s}</div>${starHtml}</div></td>
-      <td style="text-align:center">${imp>0? (imp===2?'★★':'★') : ''}</td>
-      <td style="text-align:center"><input type='checkbox' class='completed'></td>
-      <td style="text-align:center"><input type='checkbox' class='revised'></td>
-      <td style="text-align:center"><input type='checkbox' class='practiced'></td>
-      <td class="date-cell" style="text-align:center"></td>
-      <td class="date-cell" style="text-align:center"></td>
-      <td class="date-cell" style="text-align:center"></td>
-      <td style="text-align:left"><input type="text" class="note note-field" placeholder="notes..."></td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-/* assemble schedulable entries using internal keys (order matters) */
-function allSchedulableEntries(){
-  const groups = [
-    ['Probability & Statistics', window.P_STATS || []],
-    ['Linear Algebra', window.LA || []],
-    ['Calculus & Optimization', window.CALC || []],
-    ['Programming', window.PROG || []],
-    ['Database', window.DB || []],
-    ['Machine Learning', window.ML || []],
-    ['AI', window.AI || []],
-  ];
-  const out=[];
-  groups.forEach(g=>{
-    const tname=g[0], arr=g[1];
-    arr.forEach((s,i)=> out.push({topic:tname, subtopic:s, index:i}));
-  });
-  return out;
-}
-
-/* Compute subject blocks (contiguous), using amplitude days; returns map topic-> {start,end,days} */
-function computeSubjectBlocks(amps, startDate){
-  const blocks = {};
-  let cursor = new Date(startDate.getTime());
-  const keys = Object.keys(amps);
-  for(const k of keys){
-    const days = Math.max(1, Math.floor(amps[k])); // at least 1
-    const blockStart = new Date(cursor.getTime());
-    const blockEnd = addDays(blockStart, days - 1);
-    blocks[k] = {start:blockStart, end:blockEnd, days};
-    cursor = addDays(blockEnd, 1);
-  }
-  return blocks;
-}
-
-/* Assign target dates using subject blocks -> distribute subtopics evenly in block */
-function assignTargetDates(){
-  const entries = allSchedulableEntries();
-  const map = {};
-  if (entries.length === 0) return map;
-
-  const blocks = computeSubjectBlocks(amplitude, studyStart);
-
-  // for each subject, gather its entries
-  const byTopic = {};
-  entries.forEach(e=>{
-    if (!byTopic[e.topic]) byTopic[e.topic] = [];
-    byTopic[e.topic].push(e);
-  });
-
-  // distribute within block
-  Object.keys(byTopic).forEach(topic=>{
-    const list = byTopic[topic];
-    const block = blocks[topic];
-    if (!block){
-      // fallback: evenly scatter across whole window
-      const totalDays = Math.floor((studyEnd - studyStart)/(1000*60*60*24)) + 1;
-      list.forEach((item, idx)=>{
-        const frac = idx / (list.length - 1 || 1);
-        const dayOffset = Math.round(frac * (totalDays - 1));
-        const target = addDays(studyStart, dayOffset);
-        const rev1 = addDays(target, rev1OffsetDays);
-        map[`${item.topic}::${item.index}`] = {target, rev1};
-      });
-    } else {
-      const spanDays = Math.max(1, Math.floor((block.end - block.start)/(1000*60*60*24)) + 1);
-      for(let i=0;i<list.length;i++){
-        const frac = i / (list.length - 1 || 1);
-        const offset = Math.round(frac * (spanDays - 1));
-        const target = addDays(block.start, offset);
-        const rev1 = addDays(target, rev1OffsetDays);
-        map[`${list[i].topic}::${list[i].index}`] = {target, rev1};
-      }
-    }
-  });
-
-  // assign finalRev round-robin over final window days
-  const finalWindowDays = [];
-  for(let d=0; d<=Math.floor((finalRevWindowEnd - finalRevWindowStart)/(1000*60*60*24)); d++){
-    finalWindowDays.push(addDays(finalRevWindowStart, d));
-  }
-  const keys = Object.keys(map);
-  for(let i=0;i<keys.length;i++){
-    map[keys[i]].finalRev = finalWindowDays[i % finalWindowDays.length];
-  }
-  return map;
-}
-
-/* populate dates into visible tables */
-function populateDates(mapping){
-  document.querySelectorAll('details').forEach(section=>{
-    const visibleTopic = section.querySelector('summary').textContent.trim();
-    const topicKey = topicKeyFromSummary(visibleTopic);
-    Array.from(section.querySelectorAll('tbody tr')).forEach((row, idx)=>{
-      const key = `${topicKey}::${idx}`;
-      const cellTarget = row.cells[5];
-      const cellRev1 = row.cells[6];
-      const cellFinal = row.cells[7];
-      const m = mapping[key];
-      if (!m){
-        cellTarget.textContent = '—';
-        cellRev1.textContent = '—';
-        cellFinal.textContent = '—';
-        row.dataset.target = '';
-        row.dataset.rev1 = '';
-        row.dataset.final = '';
-      } else {
-        cellTarget.textContent = formatDate(m.target);
-        cellRev1.textContent = formatDate(m.rev1);
-        cellFinal.textContent = formatDate(m.finalRev);
-        row.dataset.target = formatDate(m.target);
-        row.dataset.rev1 = formatDate(m.rev1);
-        row.dataset.final = formatDate(m.finalRev);
-      }
-    });
-  });
-}
-
-/* coloring */
-function applyRowColoring(){
-  const today = new Date();
-  document.querySelectorAll('details tbody tr').forEach(row=>{
-    row.classList.remove('row-overdue','row-due-soon','row-done');
-    const completed = row.querySelector('.completed') && row.querySelector('.completed').checked;
-    const targetStr = row.dataset.target;
-    if (!targetStr || targetStr==='') return;
-    const parts = targetStr.split('-').map(Number);
-    const tDate = new Date(parts[0], parts[1]-1, parts[2]);
-    const daysTo = Math.floor((tDate - today)/(1000*60*60*24));
-    if (completed){
-      row.classList.add('row-done');
-    } else if (daysTo < 0){
-      row.classList.add('row-overdue');
-    } else if (daysTo <= 3){
-      row.classList.add('row-due-soon');
-    }
-  });
-}
-
-/* save/load states for syllabus (using normalized topic keys) */
-function saveStates(){
-  document.querySelectorAll('details').forEach(section=>{
-    const visibleTopic = section.querySelector('summary')?.textContent?.trim() || 'unknown';
-    const topicKey = topicKeyFromSummary(visibleTopic);
-    Array.from(section.querySelectorAll('tbody tr')).forEach((row, idx)=>{
-      ['completed','revised','practiced'].forEach(type=>{
-        const cb = row.querySelector('.'+type);
-        if (!cb) return;
-        try{ localStorage.setItem(makeKey(topicKey, idx, type), cb.checked ? '1' : '0'); }catch(e){}
-      });
-      const note = row.querySelector('.note-field');
-      if (note){
-        try{ localStorage.setItem(makeKey(topicKey, idx, 'note'), note.value || ''); }catch(e){}
-      }
-    });
-  });
-  // save GA daily checkboxes and notes
-  document.querySelectorAll('input[data-ga]').forEach(cb=>{
-    const ds = cb.getAttribute('data-ga');
-    try{ localStorage.setItem(makeGAKey(ds), cb.checked ? '1' : '0'); }catch(e){}
-  });
-  document.querySelectorAll('input[data-ga-note]').forEach(inp=>{
-    const ds = inp.getAttribute('data-ga-note');
-    try{ localStorage.setItem(makeGANoteKey(ds), inp.value || ''); }catch(e){}
-  });
-}
-function loadStates(){
-  document.querySelectorAll('details').forEach(section=>{
-    const visibleTopic = section.querySelector('summary')?.textContent?.trim() || 'unknown';
-    const topicKey = topicKeyFromSummary(visibleTopic);
-    Array.from(section.querySelectorAll('tbody tr')).forEach((row, idx)=>{
-      ['completed','revised','practiced'].forEach(type=>{
-        const cb = row.querySelector('.'+type);
-        if (!cb) return;
-        const v = localStorage.getItem(makeKey(topicKey, idx, type));
-        cb.checked = v === '1';
-      });
-      const note = row.querySelector('.note-field');
-      if (note){
-        const nv = localStorage.getItem(makeKey(topicKey, idx, 'note'));
-        if (nv !== null) note.value = nv;
-      }
-    });
-  });
-  // load GA daily states
-  document.querySelectorAll('input[data-ga]').forEach(cb=>{
-    const ds = cb.getAttribute('data-ga');
-    const v = localStorage.getItem(makeGAKey(ds));
-    cb.checked = v === '1';
-  });
-  document.querySelectorAll('input[data-ga-note]').forEach(inp=>{
-    const ds = inp.getAttribute('data-ga-note');
-    const v = localStorage.getItem(makeGANoteKey(ds));
-    if (v !== null) inp.value = v;
-  });
-}
-
-/* summary */
-function updateSummary(){
-  saveStates();
-  const rows = [];
-  document.querySelectorAll('details').forEach(section=>{
-    const visible = section.querySelector('summary').textContent.trim();
-    const trs = Array.from(section.querySelectorAll('tbody tr'));
-    const total = trs.length;
-    let comp=0, rev=0, prac=0;
-    trs.forEach(r=>{ if (r.querySelector('.completed')?.checked) comp++; if (r.querySelector('.revised')?.checked) rev++; if (r.querySelector('.practiced')?.checked) prac++; });
-    rows.push(`<tr><td>${visible}</td><td style='text-align:center'>${total}</td><td style='text-align:center'>${comp}</td><td style='text-align:center'>${rev}</td><td style='text-align:center'>${prac}</td><td style='text-align:center'>${total?((comp/total)*100).toFixed(1):'0.0'}%</td><td style='text-align:center'>${total?((rev/total)*100).toFixed(1):'0.0'}%</td><td style='text-align:center'>${total?((prac/total)*100).toFixed(1):'0.0'}%</td></tr>`);
-  });
-  const allRows = Array.from(document.querySelectorAll('details tbody tr'));
-  const grandTotal = allRows.length || 1;
-  let gC=0,gR=0,gP=0; allRows.forEach(r=>{ if (r.querySelector('.completed')?.checked) gC++; if (r.querySelector('.revised')?.checked) gR++; if (r.querySelector('.practiced')?.checked) gP++; });
-  const grand = `<tr class='grand'><td><b>Grand Total</b></td><td style='text-align:center'>${grandTotal}</td><td style='text-align:center'>${gC}</td><td style='text-align:center'>${gR}</td><td style='text-align:center'>${gP}</td><td style='text-align:center'>${((gC/grandTotal)*100).toFixed(1)}%</td><td style='text-align:center'>${((gR/grandTotal)*100).toFixed(1)}%</td><td style='text-align:center'>${((gP/grandTotal)*100).toFixed(1)}%</td></tr>`;
-  document.getElementById('summaryTableWrap').innerHTML = `<table class='table'><thead><tr><th>Main Topic</th><th>Total Subtopics</th><th>Completed</th><th>Revised</th><th>Practiced</th><th>%C</th><th>%R</th><th>%P</th></tr></thead><tbody>${rows.join('')} ${grand}</tbody></table>`;
-  const live = document.getElementById('liveStats');
-  if (live) live.textContent = `Completed ${gC}/${grandTotal} · Revised ${gR} · Practiced ${gP}`;
-  // show practice allocation info
-  const pi = document.getElementById('practiceInfo');
-  if (pi) {
-    if (practiceAllocationDays > 0) {
-      pi.textContent = `Practice allocation: ${practiceAllocationDays} day(s) were freed by previous amplitude changes. Current adjustment: Probability shortened to finish on 2025-11-27 and 3 days moved to Programming.`;
-    } else {
-      pi.textContent = `Practice allocation: no net freed days (total study days unchanged).`;
-    }
-  }
-  applyRowColoring();
-}
-
-/* CSV export (simple) */
-function exportCSV(){
-  const rows=[];
-  document.querySelectorAll('details').forEach(section=>{
-    const visibleTopic = section.querySelector('summary')?.textContent?.trim() || '';
-    const topicKey = topicKeyFromSummary(visibleTopic);
-    Array.from(section.querySelectorAll('tbody tr')).forEach((row, idx)=>{
-      const sub = (row.querySelector('td')?.textContent || '').trim().replace(/\n/g,' ');
-      const imp = IMPORTANCE[topicKey] && IMPORTANCE[topicKey][idx] ? IMPORTANCE[topicKey][idx] : 0;
-      const comp = row.querySelector('.completed')?.checked ? '1':'0';
-      const rev = row.querySelector('.revised')?.checked ? '1':'0';
-      const prac = row.querySelector('.practiced')?.checked ? '1':'0';
-      const targ = row.dataset.target || '';
-      const note = (row.querySelector('.note-field')?.value || '').replace(/"/g,'""');
-      // build CSV-safe row
-      rows.push([visibleTopic, topicKey, idx, sub, imp, comp, rev, prac, targ, note].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
-    });
-  });
-  // also export GA daily habit as separate block rows
-  const gaRows = [];
-  document.querySelectorAll('input[data-ga]').forEach((cb)=>{
-    const ds = cb.getAttribute('data-ga');
-    const done = cb.checked ? '1' : '0';
-    const noteInp = document.querySelector(`input[data-ga-note="${ds}"]`);
-    const note = noteInp ? noteInp.value.replace(/"/g,'""') : '';
-    gaRows.push(`"GA Daily","General Aptitude","${ds}","Daily practice","0","${done}","","","${ds}","${note}"`);
-  });
-  const csv = 'visible_topic,internal_topic,idx,subtopic,importance,completed,revised,practiced,target_date,note\n' + rows.join('\n') + '\n' + gaRows.join('\n');
-  const blob = new Blob([csv], {type:'text/csv'}); const url = URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download='gate_da_export.csv'; a.click(); URL.revokeObjectURL(url);
-}
-
-/* CSV import using parseCSV */
-function importCSVFile(file){
-  const reader=new FileReader();
-  reader.onload = e=>{
-    const text = e.target.result;
-    const rows = parseCSV(text);
-    // header expected, so skip first row if it matches headers
-    let start = 0;
-    if (rows.length>0){
-      const headers = rows[0].map(h=>String(h||'').toLowerCase());
-      if (headers.includes('visible_topic') && headers.includes('subtopic')) start = 1;
-    }
-    for(let r=start;r<rows.length;r++){
-      const parts = rows[r];
-      if (!parts || parts.length < 9) continue;
-      const visible = (parts[0]||'').replace(/""/g,'"');
-      const internal = (parts[1]||'').replace(/""/g,'"');
-      const idx = parseInt((parts[2]||'').replace(/^"|"$/g,''),10);
-      const imp = parseInt((parts[4]||'').replace(/^"|"$/g,''),10) || 0;
-      const comp = String(parts[5]||'').replace(/^"|"$/g,'') === '1';
-      const rev = String(parts[6]||'').replace(/^"|"$/g,'') === '1';
-      const prac = String(parts[7]||'').replace(/^"|"$/g,'') === '1';
-      const targ = parts[8] ? String(parts[8]||'').replace(/^"|"$/g,'').replace(/""/g,'"') : '';
-      const note = parts[9] ? String(parts[9]||'').replace(/^"|"$/g,'').replace(/""/g,'"') : '';
-      // GA daily rows handled specially (visible == "GA Daily")
-
-      if (IMPORTANCE[internal]) IMPORTANCE[internal][idx] = imp;
-      const details = Array.from(document.querySelectorAll('details'));
-      let section = details.find(d => (d.querySelector('summary')?.textContent||'').trim() === visible);
-      if (!section) section = details.find(d => (d.querySelector('summary')?.textContent||'').toLowerCase().includes((internal||'').toLowerCase()));
-      if (!section) continue;
-      const row = section.querySelectorAll('tbody tr')[idx];
-      if (!row) continue;
-      if (row.querySelector('.completed')) row.querySelector('.completed').checked = comp;
-      if (row.querySelector('.revised')) row.querySelector('.revised').checked = rev;
-      if (row.querySelector('.practiced')) row.querySelector('.practiced').checked = prac;
-      if (row.querySelector('.note-field')) row.querySelector('.note-field').value = note;
-      if (targ) row.dataset.target = targ;
-    }
-    // re-render
-    const groups = [
-      ['Probability & Statistics', window.P_STATS || []],
-      ['Linear Algebra', window.LA || []],
-      ['Calculus & Optimization', window.CALC || []],
-      ['Programming', window.PROG || []],
-      ['Database', window.DB || []],
-      ['Machine Learning', window.ML || []],
-      ['AI', window.AI || []]
-    ];
-    groups.forEach(g=> renderTopicArray(g[0], g[1]));
-    updateSummary();
-    alert('Import finished.');
-  };
-  reader.readAsText(file);
-}
-
-/* reset */
-function resetAll(){
-  if (!confirm('Reset all progress and clear saved progress?')) return;
-  document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
-  document.querySelectorAll('.note-field').forEach(n=>n.value='');
-  Object.keys(localStorage).forEach(k=>{ if (k.startsWith(canonicalPrefix)) localStorage.removeItem(k); });
-  updateSummary();
-  // clear archery & ga storage
-  generateArcherySchedule(); // regenerate (will load from storage if present)
-  generateGAHabitUI();
-}
-
-/* archery schedule with persistence */
-function generateArcherySchedule(){
-  const wrap = document.getElementById('archeryScheduleWrap'); wrap.innerHTML='';
-  const table = document.createElement('table'); table.className='table';
-  const thead = document.createElement('thead');
-  thead.innerHTML = '<tr><th>Week</th><th>Session Dates (tick when done)</th></tr>';
-  table.appendChild(thead);
-  const tbody = document.createElement('tbody');
-  for(let w=0; w<archeryWeeks; w++){
-    const thisWeekBase = addDays(archeryStart, w*7);
-    const sessionDates = archeryWeekdays.map(weekday=>{
-      const offset = (weekday - thisWeekBase.getDay() + 7) % 7;
-      return addDays(thisWeekBase, offset);
-    });
-    const tr = document.createElement('tr');
-    const datesHtml = sessionDates.map(d=>{
-      const ds = formatDate(d);
-      const saved = localStorage.getItem(makeArcheryKey(ds)) === '1';
-      return `<label style="display:inline-block;margin-right:8px"><input type="checkbox" data-arch="${ds}" ${saved ? 'checked' : ''}> ${ds}</label>`;
-    }).join('');
-    tr.innerHTML = `<td>Week ${w+1}</td><td>${datesHtml}</td>`;
-    tbody.appendChild(tr);
-  }
-  table.appendChild(tbody);
-  wrap.appendChild(table);
-
-  // wire archery checkbox change to save
-  wrap.querySelectorAll('input[data-arch]').forEach(cb=>{
-    cb.addEventListener('change', (e)=>{
-      const ds = cb.getAttribute('data-arch');
-      try{ localStorage.setItem(makeArcheryKey(ds), cb.checked ? '1' : '0'); }catch(e){}
-    });
-  });
-}
-
-/* GA daily habit UI helper (generates listeners for GA checkboxes already in HTML) */
-function generateGAHabitUI(){
-  // wire GA checkboxes & notes (they are already present in the syllabus card table)
-  document.querySelectorAll('input[data-ga]').forEach(cb=>{
-    cb.addEventListener('change', ()=>{ try{ localStorage.setItem(makeGAKey(cb.getAttribute('data-ga')), cb.checked ? '1' : '0'); }catch(e){} updateGASummary(); saveStates(); });
-  });
-  document.querySelectorAll('input[data-ga-note]').forEach(inp=>{
-    inp.addEventListener('input', ()=>{ try{ localStorage.setItem(makeGANoteKey(inp.getAttribute('data-ga-note')), inp.value || ''); }catch(e){} });
-  });
-  updateGASummary();
-}
-
-function updateGASummary(){
-  const inputs = Array.from(document.querySelectorAll('input[data-ga]'));
-  const done = inputs.filter(i=>i.checked).length;
-  const total = inputs.length || 1;
-  // insert or update a small info row above the GA table
-  let info = document.getElementById('ga-habit-info-inline');
-  if (!info){
-    info = document.createElement('div'); info.id = 'ga-habit-info-inline'; info.style.margin = '8px 0';
-    // place it above the GA daily plan table inside the GA details
-    const gaDaily = document.getElementById('ga-daily-plan');
-    if (gaDaily && gaDaily.parentNode) gaDaily.parentNode.insertBefore(info, gaDaily);
-    else document.getElementById('summaryCard').appendChild(info);
-  }
-  info.textContent = `GA daily practice completed: ${done}/${total} days (Jan 01 → Feb 01).`;
-}
-
-/* ---------- init ---------- */
-window.addEventListener('load', ()=>{
-  const groups = [
-    ['Probability & Statistics', window.P_STATS || []],
-    ['Linear Algebra', window.LA || []],
-    ['Calculus & Optimization', window.CALC || []],
-    ['Programming', window.PROG || []],
-    ['Database', window.DB || []],
-    ['Machine Learning', window.ML || []],
-    ['AI', window.AI || []],
-  ];
-  groups.forEach(g=> renderTopicArray(g[0], g[1]));
-
-  const mapping = assignTargetDates();
-  populateDates(mapping);
-
-  loadStates();
-  generateArcherySchedule();
-  generateGAHabitUI();
-  applyRowColoring();
-  updateSummary();
-
-  document.addEventListener('change', (e)=>{ 
-    if (!e.target) return;
-    if (e.target.matches('input[type=checkbox]') || e.target.matches('.note-field')) { saveStates(); updateSummary(); }
-  });
-  document.addEventListener('input', (e)=>{ if (e.target && e.target.matches('.note-field')) saveStates(); });
-
-  document.getElementById('exportCsv').addEventListener('click', exportCSV);
-  document.getElementById('clearStorage').addEventListener('click', resetAll);
-  document.getElementById('copySummary').addEventListener('click', ()=>{ navigator.clipboard?.writeText(document.getElementById('summaryTableWrap').innerText).then(()=>alert('Summary copied to clipboard')).catch(()=>alert('Could not copy')); });
-
-  const fileInput = document.getElementById('fileInput');
-  fileInput.addEventListener('change', (ev)=>{ const f=ev.target.files && ev.target.files[0]; if (f) importCSVFile(f); fileInput.value=''; });
-
-  setInterval(applyRowColoring, 1000*60*10);
-
-  document.querySelectorAll('.date-cell').forEach(cell=>{
-    cell.addEventListener('mouseenter', (e)=>{
-      const row = cell.closest('tr'); if (!row) return;
-      const r1 = row.dataset.rev1 || '', rf = row.dataset.final || '';
-      if (r1 || rf) cell.title = `Rev1: ${r1 || '—'} • Final: ${rf || '—'}`;
-    });
-  });
-});
-</script>
+<script src="scriptnew.js"></script>
 </body>
 </html>

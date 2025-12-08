@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GATE DA Tracker — Fixed Build</title>
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<div class="container">
+  <h1>GATE DA Tracker — Fixed Build
+    <button class="refresh-btn" title="Reload" onclick="location.reload()">🔄</button>
+  </h1>
+
+  <div class="controls">
+    <button class="btn" id="exportCsv">Export CSV</button>
+    <label class="btn ghost" id="importLabel" style="cursor:pointer">
+      Import CSV
+      <input type="file" id="fileInput" accept=".csv" style="display:none">
+    </label>
+    <button class="btn ghost" id="exportIcsBtn">Export Calendar (ICS)</button>
+    <button class="btn ghost" id="clearStorage">Reset All</button>
+    <button class="btn ghost" id="copySummary">Copy Summary</button>
+
+    <div id="liveStats" class="small" style="align-self:center"></div>
+
+    <div class="legend" style="margin-left:12px">
+      <strong>Legend:</strong> <span style="margin-left:8px">★ = important</span>, <span style="margin-left:8px">★★ = very important</span>
+      <div style="margin-top:4px">Study: <b>Nov 19, 2025 → Feb 3, 2026</b>. Final revision: <b>Feb 4 → Feb 14, 2026</b>.</div>
+    </div>
+  </div>
+
+  <div id="summaryCard" class="card">
+    <h3 style="margin:0 0 8px">Progress Summary</h3>
+    <div id="summaryTableWrap"></div>
+    <div style="margin-top:8px;color:#333" id="practiceInfo"></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 8px">Full Syllabus — Target dates & importance (AI trimmed)</h3>
+
+    <!-- Probability & Statistics -->
+    <details open class="details">
+      <summary><b>Probability &amp; Statistics</b></summary>
+      <table class="table" id="topic-Probability & Statistics">
+        <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </details>
+
+    <!-- Linear Algebra -->
+    <details open class="details">
+      <summary><b>Linear Algebra</b></summary>
+      <table class="table" id="topic-Linear Algebra">
+        <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
+    </details>
+
+    <!-- Calculus & Optimization -->
+    <details open class="details">
+      <summary><b>Calculus &amp; Optimization</b></summary>
+      <table class="table" id="topic-Calculus & Optimization">
+        <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
+    </details>
+
+        <!-- Database -->
+    <details open class="details">
+      <summary><b>Database</b></summary>
+      <table class="table" id="topic-Database"><thead>
+        <tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
+    </details>
+
+
+    <!-- Programming / DS Algo -->
+    <details open class="details">
+      <summary><b>Programming / DS Algo</b></summary>
+      <table class="table" id="topic-Programming">
+       <thead><tr><th style="width: 130px;">Subtopic</th><th style="width:130px">Important</th><th style="width:130px">Completed</th><th style="width:130px">Revised</th><th style="width:133px">Practiced</th><th style="width:130px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
+    </details>
+
+
+    <!-- Machine Learning -->
+    <details open class="details">
+      <summary><b>Machine Learning</b></summary>
+      <table class="table" id="topic-Machine Learning"><thead>
+        <tr><th>Subtopic</th><th style="width:90px">Important</th><th style="width:100px">Completed</th><th style="width:100px">Revised</th><th style="width:110px">Practiced</th><th style="width:120px">Target Date</th><th style="width:130px">Rev 1</th><th style="width:130px">Final Rev</th><th>Notes</th></tr></thead>
+        <tbody></tbody></table>
+    </details>
+
+
+      <!-- General Aptitude — auto-generated parallel GA container + AI container -->
+      <div style="margin-top:12px">
+        <div id="ga-auto-wrap"></div> <!-- scriptnew.js will populate this -->
+
+        <!-- auto-generated AI parallel block (Jan 1 → Jan 15) -->
+        <div id="ai-auto-wrap" style="margin-top:12px"></div>
+      </div>
+
+      <!-- Programming / DS Algo daily plan (kept as static micro-plan) -->
+      <div style="margin-top:12px">
+        <h4 style="margin:8px 0 6px">Programming / DS Algo AND ML — Daily Plan (dec 01 → dec 30)</h4>
+        <p class="small">Daily: <b>30 minutes</b> </p>
+
+        <table class="table" id="prog-daily-plan">
+          <thead><tr><th>Date</th><th>Topic</th><th>Done</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>2025-12-01</td><td>Programming / DS Algo —Programming in Python</td><td style="text-align:center"><input id="ga-2025-12-01" type="checkbox" data-ga="2025-12-01" aria-label="GA 2025-12-01"></td><td><input class="note-field" data-ga-note="2025-12-01" placeholder="notes..." aria-label="GA note 2025-12-01"></td></tr>
+            <tr><td>2025-12-02</td><td>Programming / DS Algo — Programming in Python</td><td style="text-align:center"><input id="ga-2025-12-02" type="checkbox" data-ga="2025-12-02" aria-label="GA 2025-12-02"></td><td><input class="note-field" data-ga-note="2025-12-02" placeholder="notes..." aria-label="GA note 2025-12-02"></td></tr>
+            <tr><td>2025-12-03</td><td>Programming / DS Algo — Programming in Python</td><td style="text-align:center"><input id="ga-2025-12-03" type="checkbox" data-ga="2025-12-03" aria-label="GA 2025-12-03"></td><td><input class="notice note-field" data-ga-note="2025-12-03" placeholder="notes..." aria-label="GA note 2025-12-03"></td></tr>
+            <tr><td>2025-12-04</td><td>Programming / DS Algo — Stacks</td><td style="text-align:center"><input id="ga-2025-12-04" type="checkbox" data-ga="2025-12-04" aria-label="GA 2025-12-04"></td><td><input class="note-field" data-ga-note="2025-12-04" placeholder="notes..." aria-label="GA note 2025-12-04"></td></tr>
+            <tr><td>2025-12-05</td><td>Programming / DS Algo — Queues</td><td style="text-align:center"><input id="ga-2025-12-05" type="checkbox" data-ga="2025-12-05" aria-label="GA 2025-12-05"></td><td><input class="note-field" data-ga-note="2025-12-05" placeholder="notes..." aria-label="GA note 2025-12-05"></td></tr>
+            <tr><td>2025-12-06</td><td>Programming / DS Algo — Linear search &amp; Binary search </td><td style="text-align:center"><input id="ga-2025-12-06" type="checkbox" data-ga="2025-12-06" aria-label="GA 2025-12-06"></td><td><input class="note-field" data-ga-note="2025-12-06" placeholder="notes..." aria-label="GA note 2025-12-06"></td></tr>
+            <tr><td>2025-12-07</td><td>Programming / DS Algo — Selection sort </td><td style="text-align:center"><input id="ga-2025-12-07" type="checkbox" data-ga="2025-12-07" aria-label="GA 2025-12-07"></td><td><input class="note-field" data-ga-note="2025-12-07" placeholder="notes..." aria-label="GA note 2025-12-07"></td></tr>
+            <tr><td>2025-12-08</td><td>Programming / DS Algo — Bubble sort </td><td style="text-align:center"><input id="ga-2025-12-08" type="checkbox" data-ga="2025-12-08" aria-label="GA 2025-12-08"></td><td><input class="note-field" data-ga-note="2025-12-08" placeholder="notes..." aria-label="GA note 2025-12-08"></td></tr>
+            <tr><td>2025-12-09</td><td>Programming / DS Algo — Insertion sort </td><td style="text-align:center"><input id="ga-2025-12-09" type="checkbox" data-ga="2025-12-09" aria-label="GA 2025-12-09"></td><td><input class="note-field" data-ga-note="2025-12-09" placeholder="notes..." aria-label="GA note 2025-12-09"></td></tr>
+            <tr><td>2025-12-10</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-10" type="checkbox" data-ga="2025-12-10" aria-label="GA 2025-12-10"></td><td><input class="note-field" data-ga-note="2025-12-10" placeholder="notes..." aria-label="GA note 2025-12-10"></td></tr>
+            <tr><td>2025-12-11</td><td>Programming / DS Algo— PYPQS</td><td style="text-align:center"><input id="ga-2025-12-11" type="checkbox" data-ga="2025-12-11" aria-label="GA 2025-12-11"></td><td><input class="note-field" data-ga-note="2025-12-11" placeholder="notes..." aria-label="GA note 2025-12-11"></td></tr>
+            <tr><td>2025-12-12</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-12" type="checkbox" data-ga="2025-12-12" aria-label="GA 2025-12-12"></td><td><input class="note-field" data-ga-note="2025-12-12" placeholder="notes..." aria-label="GA note 2025-12-12"></td></tr>
+            <tr><td>2025-12-13</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-13" type="checkbox" data-ga="2025-12-13" aria-label="GA 2025-12-13"></td><td><input class="note-field" data-ga-note="2025-12-13" placeholder="notes..." aria-label="GA note 2025-12-13"></td></tr>
+            <tr><td>2025-12-14</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-14" type="checkbox" data-ga="2025-12-14" aria-label="GA 2025-12-14"></td><td><input class="note-field" data-ga-note="2025-12-14" placeholder="notes..." aria-label="GA note 2025-12-14"></td></tr>
+            <tr><td>2025-12-15</td><td>Programming / DS Algo — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-15" type="checkbox" data-ga="2025-12-15" aria-label="GA 2025-12-15"></td><td><input class="note-field" data-ga-note="2025-12-15" placeholder="notes..." aria-label="GA note 2025-12-15"></td></tr>
+            <tr><td>2025-12-16</td><td>ML — Regression problems </td><td style="text-align:center"><input id="ga-2025-12-16" type="checkbox" data-ga="2025-12-16" aria-label="GA 2025-12-16"></td><td><input class="note-field" data-ga-note="2025-12-16" placeholder="notes..." aria-label="GA note 2025-12-16"></td></tr>
+            <tr><td>2025-12-17</td><td>ML — Classification problems </td><td style="text-align:center"><input id="ga-2025-12-17" type="checkbox" data-ga="2025-12-17" aria-label="GA 2025-12-17"></td><td><input class="note-field" data-ga-note="2025-12-17" placeholder="notes..." aria-label="GA note 2025-12-17"></td></tr>
+            <tr><td>2025-12-18</td><td>ML — Simple linear regression</td><td style="text-align:center"><input id="ga-2025-12-18" type="checkbox" data-ga="2025-12-18" aria-label="GA 2025-12-18"></td><td><input class="note-field" data-ga-note="2025-12-18" placeholder="notes..." aria-label="GA note 2025-12-18"></td></tr>
+            <tr><td>2025-12-19</td><td>ML — Multiple linear regression</td><td style="text-align:center"><input id="ga-2025-12-19" type="checkbox" data-ga="2025-12-19" aria-label="GA 2025-12-19"></td><td><input class="note-field" data-ga-note="2025-12-19" placeholder="notes..." aria-label="GA note 2025-12-19"></td></tr>
+            <tr><td>2025-12-20</td><td>ML — Ridge regression</td><td style="text-align:center"><input id="ga-2025-12-20" type="checkbox" data-ga="2025-12-20" aria-label="GA 2025-12-20"></td><td><input class="note-field" data-ga-note="2025-12-20" placeholder="notes..." aria-label="GA note 2025-12-20"></td></tr>
+            <tr><td>2025-12-21</td><td>ML — Logistic regression</td><td style="text-align:center"><input id="ga-2025-12-21" type="checkbox" data-ga="2025-12-21" aria-label="GA 2025-12-21"></td><td><input class="note-field" data-ga-note="2025-12-21" placeholder="notes..." aria-label="GA note 2025-12-21"></td></tr>
+            <tr><td>2025-12-22</td><td>ML — k-nearest neighbour</td><td style="text-align:center"><input id="ga-2025-12-22" type="checkbox" data-ga="2025-12-22" aria-label="GA 2025-12-22"></td><td><input class="note-field" data-ga-note="2025-12-22" placeholder="notes..." aria-label="GA note 2025-12-22"></td></tr>
+            <tr><td>2025-12-23</td><td>ML — Naive Bayes classifier</td><td style="text-align:center"><input id="ga-2025-12-23" type="checkbox" data-ga="2025-12-23" aria-label="GA 2025-12-23"></td><td><input class="note-field" data-ga-note="2025-12-23" placeholder="notes..." aria-label="GA note 2025-12-23"></td></tr>
+            <tr><td>2025-12-24</td><td>ML — Linear discriminant analysis</td><td style="text-align:center"><input id="ga-2025-12-24" type="checkbox" data-ga="2025-12-24" aria-label="GA 2025-12-24"></td><td><input class="note-field" data-ga-note="2025-12-24" placeholder="notes..." aria-label="GA note 2025-12-24"></td></tr>
+            <tr><td>2025-12-25</td><td>ML — Support vector machine</td><td style="text-align:center"><input id="ga-2025-12-25" type="checkbox" data-ga="2025-12-25" aria-label="GA 2025-12-25"></td><td><input class="note-field" data-ga-note="2025-12-25" placeholder="notes..." aria-label="GA note 2025-12-25"></td></tr>
+            <tr><td>2025-12-26</td><td>ML — Decision trees</td><td style="text-align:center"><input id="ga-2025-12-26" type="checkbox" data-ga="2025-12-26" aria-label="GA 2025-12-26"></td><td><input class="note-field" data-ga-note="2025-12-26" placeholder="notes..." aria-label="GA note 2025-12-26"></td></tr>
+            <tr><td>2025-12-27</td><td>ML — Bias-variance trade-off</td><td style="text-align:center"><input id="ga-2025-12-27" type="checkbox" data-ga="2025-12-27" aria-label="GA 2025-12-27"></td><td><input class="note-field" data-ga-note="2025-12-27" placeholder="notes..." aria-label="GA note 2025-12-27"></td></tr>
+            <tr><td>2025-12-28</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-28" type="checkbox" data-ga="2025-12-28" aria-label="GA 2025-12-28"></td><td><input class="note-field" data-ga-note="2025-12-28" placeholder="notes..." aria-label="GA note 2025-12-28"></td></tr>
+            <tr><td>2025-12-29</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-29" type="checkbox" data-ga="2025-12-29" aria-label="GA 2025-12-29"></td><td><input class="note-field" data-ga-note="2025-12-29" placeholder="notes..." aria-label="GA note 2025-12-29"></td></tr>
+            <tr><td>2025-12-30</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-30" type="checkbox" data-ga="2025-12-30" aria-label="GA 2025-12-30"></td><td><input class="note-field" data-ga-note="2025-12-30" placeholder="notes..." aria-label="GA note 2025-12-30"></td></tr>
+            <tr><td>2025-12-31</td><td>ML — PYPQS</td><td style="text-align:center"><input id="ga-2025-12-31" type="checkbox" data-ga="2025-12-31" aria-label="GA 2025-12-31"></td><td><input class="note-field" data-ga-note="2025-12-31" placeholder="notes..." aria-label="GA note 2025-12-31"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </details>
+
+  <div class="card" id="revisionCalendarCard">
+    <h3 style="margin:0 0 12px">📘 Final Revision & Mock-Test Daily Calendar (30 Jan → 14 Feb)</h3>
+    <p class="small">Automatically generated from your ★ / ★★ priorities + Final-Rev dates.</p>
+
+    <table class="table" id="revisionCalendarTable">
+      <thead>
+        <tr>
+          <th style="width:120px">Date</th>
+          <th>Revision Tasks</th>
+          <th style="width:120px">Mock Test</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+
+
+  <div class="card">
+    <h3 style="margin:0 0 8px">Controls & Notes</h3>
+    <ul>
+      <li>Study window: <b>Nov 19, 2025 → Feb 3, 2026</b>. Final revision window: <b>Feb 4 → Feb 14, 2026</b>.</li>
+      <li>AI trimmed to the most frequently-asked topics (2024–25): Informed search, Uninformed search, Adversarial search, Propositional logic, Predicate logic, Reasoning under uncertainty, Conditional independence representation, Exact inference through variable elimination, Approximate inference through sampling.</li>
+      <li>Amplitude adjustments: updated per-user configuration; scheduling uses contiguous subject blocks (amplitude) when assigning target dates.</li>
+    </ul>
+  </div>
+
+  <div class="footer">Saved locally in browser. Want these dates exported or visualized as a calendar? Use "Export Calendar (ICS)".</div>
+</div>
+<script src="scriptnew.js"></script>
+</body>
+</html>

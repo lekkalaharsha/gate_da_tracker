@@ -106,8 +106,8 @@ const amplitude = {
   'Probability & Statistics': 10,
   'Linear Algebra': 10,
   'Calculus & Optimization': 7,
-  'Database': 8,
-  'Programming': 17,
+  'Database': 10,
+  'Programming': 15,
   'Machine Learning': 15
 };
 
@@ -1055,3 +1055,4 @@ window.addEventListener('load', ()=>{
     });
   });
 });
+

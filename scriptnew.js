@@ -113,9 +113,9 @@ const amplitude = {
 
 /* Small map for explicit extra "practice" days per subject */
 const practiceAllocation = {
-  'Database': 3,
-  'AI': 2,
-  'Calculus & Optimization': 1
+  'Database': 0,
+  'AI': 0,
+  'Calculus & Optimization': 0
 };
 
 const oldAmplitude = {
@@ -1055,5 +1055,6 @@ window.addEventListener('load', ()=>{
     });
   });
 });
+
 
 

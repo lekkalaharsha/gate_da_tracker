@@ -1051,5 +1051,3 @@ window.addEventListener('load', ()=>{
     });
   });
 });
-
-

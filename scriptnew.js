@@ -87,11 +87,6 @@ const finalRevWindowEnd   = new Date('2026-02-14');
 
 const rev1OffsetDays = 10;
 
-/* Archery */
-const archeryStart = new Date('2025-12-01');
-const archeryWeeks = 12;
-const archeryWeekdays = [3,4,6,0]; // Wed, Thu, Sat, Sun
-
 /* GA habit (legacy) */
 const gaHabitStart = new Date('2026-01-01');
 const gaHabitEnd   = new Date('2026-02-01');
@@ -106,37 +101,17 @@ const leaveEnd   = new Date('2026-02-14');
 const amplitude = {
   'Probability & Statistics': 10,
   'Linear Algebra': 10,
-  'Calculus & Optimization': 7,
-  'Database': 10,
-  'Programming': 15,
-  'Machine Learning': 15
+  'Calculus & Optimization': 8,
+  'Database': 12,
+  'Programming': 16,
+  'Machine Learning': 16
 };
 
-/* Small map for explicit extra "practice" days per subject */
-const practiceAllocation = {
-  'Database': 3,
-  'AI': 2,
-  'Calculus & Optimization': 1
-};
-
-const oldAmplitude = {
-  'Probability & Statistics': 12,
-  'Linear Algebra': 9,
-  'Calculus & Optimization': 9,
-  'Programming': 15,
-  'Database': 9,
-  'Machine Learning': 14,
-  'AI': 9
-};
-
-const oldTotalStudyDays = Object.values(oldAmplitude).reduce((a,b)=>a+b,0);
-const newTotalStudyDays = Object.values(amplitude).reduce((a,b)=>a+b,0);
-const practiceAllocationDays = Math.max(0, oldTotalStudyDays - newTotalStudyDays);
 
 /* storage prefix & helpers */
 const canonicalPrefix = 'GATE_DA::';
 function makeKey(topic, idx, type){ return `${canonicalPrefix}${topic}::${idx}::${type}`; }
-function makeArcheryKey(dateStr){ return `${canonicalPrefix}archery::${dateStr}`; }
+
 function makeGAKey(dateStr){ return `${canonicalPrefix}ga::${dateStr}`; }
 function makeGANoteKey(dateStr){ return `${canonicalPrefix}ga_note::${dateStr}`; }
 function addDays(d,n){ const x=new Date(d.getTime()); x.setDate(x.getDate()+n); return x; }
@@ -502,36 +477,91 @@ function loadStates(){
 /* summary */
 function updateSummary(){
   saveStates();
+
   const rows = [];
   document.querySelectorAll('details').forEach(section=>{
     const visible = section.querySelector('summary').textContent.trim();
     const trs = Array.from(section.querySelectorAll('tbody tr'));
     const total = trs.length;
+
     let comp=0, rev=0, prac=0;
-    trs.forEach(r=>{ if (r.querySelector('.completed')?.checked) comp++; if (r.querySelector('.revised')?.checked) rev++; if (r.querySelector('.practiced')?.checked) prac++; });
-    rows.push(`<tr><td>${visible}</td><td style='text-align:center'>${total}</td><td style='text-align:center'>${comp}</td><td style='text-align:center'>${rev}</td><td style='text-align:center'>${prac}</td><td style='text-align:center'>${total?((comp/total)*100).toFixed(1):'0.0'}%</td><td style='text-align:center'>${total?((rev/total)*100).toFixed(1):'0.0'}%</td><td style='text-align:center'>${total?((prac/total)*100).toFixed(1):'0.0'}%</td></tr>`);
+    trs.forEach(r=>{
+      if (r.querySelector('.completed')?.checked) comp++;
+      if (r.querySelector('.revised')?.checked) rev++;
+      if (r.querySelector('.practiced')?.checked) prac++;
+    });
+
+    rows.push(
+      `<tr>
+        <td>${visible}</td>
+        <td style="text-align:center">${total}</td>
+        <td style="text-align:center">${comp}</td>
+        <td style="text-align:center">${rev}</td>
+        <td style="text-align:center">${prac}</td>
+        <td style="text-align:center">${total ? ((comp/total)*100).toFixed(1) : '0.0'}%</td>
+        <td style="text-align:center">${total ? ((rev/total)*100).toFixed(1) : '0.0'}%</td>
+        <td style="text-align:center">${total ? ((prac/total)*100).toFixed(1) : '0.0'}%</td>
+      </tr>`
+    );
   });
+
   const allRows = Array.from(document.querySelectorAll('details tbody tr'));
   const grandTotal = allRows.length || 1;
-  let gC=0,gR=0,gP=0; allRows.forEach(r=>{ if (r.querySelector('.completed')?.checked) gC++; if (r.querySelector('.revised')?.checked) gR++; if (r.querySelector('.practiced')?.checked) gP++; });
-  const grand = `<tr class='grand'><td><b>Grand Total</b></td><td style='text-align:center'>${grandTotal}</td><td style='text-align:center'>${gC}</td><td style='text-align:center'>${gR}</td><td style='text-align:center'>${gP}</td><td style='text-align:center'>${((gC/grandTotal)*100).toFixed(1)}%</td><td style='text-align:center'>${((gR/grandTotal)*100).toFixed(1)}%</td><td style='text-align:center'>${((gP/grandTotal)*100).toFixed(1)}%</td></tr>`;
-  document.getElementById('summaryTableWrap').innerHTML = `<table class='table'><thead><tr><th>Main Topic</th><th>Total Subtopics</th><th>Completed</th><th>Revised</th><th>Practiced</th><th>%C</th><th>%R</th><th>%P</th></tr></thead><tbody>${rows.join('')} ${grand}</tbody></table>`;
+
+  let gC=0, gR=0, gP=0;
+  allRows.forEach(r=>{
+    if (r.querySelector('.completed')?.checked) gC++;
+    if (r.querySelector('.revised')?.checked) gR++;
+    if (r.querySelector('.practiced')?.checked) gP++;
+  });
+
+  const grand = `
+    <tr class="grand">
+      <td><b>Grand Total</b></td>
+      <td style="text-align:center">${grandTotal}</td>
+      <td style="text-align:center">${gC}</td>
+      <td style="text-align:center">${gR}</td>
+      <td style="text-align:center">${gP}</td>
+      <td style="text-align:center">${((gC/grandTotal)*100).toFixed(1)}%</td>
+      <td style="text-align:center">${((gR/grandTotal)*100).toFixed(1)}%</td>
+      <td style="text-align:center">${((gP/grandTotal)*100).toFixed(1)}%</td>
+    </tr>
+  `;
+
+  document.getElementById('summaryTableWrap').innerHTML = `
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Main Topic</th>
+          <th>Total</th>
+          <th>Completed</th>
+          <th>Revised</th>
+          <th>Practiced</th>
+          <th>%C</th>
+          <th>%R</th>
+          <th>%P</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.join('')}
+        ${grand}
+      </tbody>
+    </table>
+  `;
+
   const live = document.getElementById('liveStats');
-  if (live) live.textContent = `Completed ${gC}/${grandTotal} · Revised ${gR} · Practiced ${gP}`;
+  if (live) {
+    live.textContent = `Completed ${gC}/${grandTotal} · Revised ${gR} · Practiced ${gP}`;
+  }
+
   const pi = document.getElementById('practiceInfo');
   if (pi) {
-    if (practiceAllocationDays > 0) {
-      const blocks = computeSubjectBlocks(amplitude, studyStart);
-      const pBlock = blocks['Probability & Statistics'];
-      const pEnd = pBlock ? formatDate(pBlock.end) : '2025-11-27';
-      const extras = Object.keys(practiceAllocation).map(k => `${k}: ${practiceAllocation[k]} day(s)`).join(', ');
-      pi.textContent = `Practice allocation: ${practiceAllocationDays} day(s) were freed by previous amplitude changes. Current adjustment: Probability shortened to finish on ${pEnd}. Extra practice days: ${extras}.`;
-    } else {
-      pi.textContent = `Practice allocation: no net freed days (total study days unchanged).`;
-    }
+    pi.textContent = '';
   }
+
   applyRowColoring();
 }
+
 
 /* CSV export (robust) */
 function exportCSV(){
@@ -660,43 +690,8 @@ function resetAll(){
   document.querySelectorAll('.note-field').forEach(n=>n.value='');
   Object.keys(localStorage).forEach(k=>{ if (k.startsWith(canonicalPrefix)) localStorage.removeItem(k); });
   updateSummary();
-  generateArcherySchedule();
+
   generateGAParallelOnLoad();
-}
-
-/* archery schedule with persistence */
-function generateArcherySchedule(){
-  const wrap = document.getElementById('archeryScheduleWrap'); if (!wrap) return;
-  wrap.innerHTML='';
-  const table = document.createElement('table'); table.className='table';
-  const thead = document.createElement('thead');
-  thead.innerHTML = '<tr><th>Week</th><th>Session Dates (tick when done)</th></tr>';
-  table.appendChild(thead);
-  const tbody = document.createElement('tbody');
-  for(let w=0; w<archeryWeeks; w++){
-    const thisWeekBase = addDays(archeryStart, w*7);
-    const sessionDates = archeryWeekdays.map(weekday=>{
-      const offset = (weekday - thisWeekBase.getDay() + 7) % 7;
-      return addDays(thisWeekBase, offset);
-    });
-    const tr = document.createElement('tr');
-    const datesHtml = sessionDates.map(d=>{
-      const ds = formatDate(d);
-      const saved = localStorage.getItem(makeArcheryKey(ds)) === '1';
-      return `<label style="display:inline-block;margin-right:8px"><input type="checkbox" data-arch="${ds}" ${saved ? 'checked' : ''} aria-label="Archery ${ds}"> ${ds}</label>`;
-    }).join('');
-    tr.innerHTML = `<td>Week ${w+1}</td><td>${datesHtml}</td>`;
-    tbody.appendChild(tr);
-  }
-  table.appendChild(tbody);
-  wrap.appendChild(table);
-
-  wrap.querySelectorAll('input[data-arch]').forEach(cb=>{
-    cb.addEventListener('change', (e)=>{
-      const ds = cb.getAttribute('data-arch');
-      try{ localStorage.setItem(makeArcheryKey(ds), cb.checked ? '1' : '0'); }catch(e){}
-    });
-  });
 }
 /* ---------- Custom GA schedule (date -> {topic, note}) ---------- */
 const customGASchedule = {
@@ -1020,7 +1015,7 @@ window.addEventListener('load', ()=>{
 
   loadStates();
 
-  generateArcherySchedule();
+
 
   generateGAParallelOnLoad();
 
@@ -1056,4 +1051,5 @@ window.addEventListener('load', ()=>{
     });
   });
 });
+
 

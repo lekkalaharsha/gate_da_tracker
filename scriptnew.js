@@ -105,10 +105,10 @@ const leaveEnd   = new Date('2026-02-14');
 const amplitude = {
   'Probability & Statistics': 10,
   'Linear Algebra': 10,
-  'Calculus & Optimization': 7,
-  'Database': 10,
-  'Programming': 15,
-  'Machine Learning': 15
+  'Calculus & Optimization': 8,
+  'Database': 12,
+  'Programming': 16,
+  'Machine Learning': 16
 };
 
 /* Small map for explicit extra "practice" days per subject */
@@ -1055,4 +1055,5 @@ window.addEventListener('load', ()=>{
     });
   });
 });
+
 

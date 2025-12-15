@@ -101,8 +101,8 @@ const leaveEnd   = new Date('2026-02-14');
 const amplitude = {
   'Probability & Statistics': 10,
   'Linear Algebra': 10,
-  'Calculus & Optimization': 8,
-  'Database': 12,
+  'Calculus & Optimization': 7,
+  'Database': 13,
   'Programming': 16,
   'Machine Learning': 16
 };
@@ -1051,3 +1051,4 @@ window.addEventListener('load', ()=>{
     });
   });
 });
+

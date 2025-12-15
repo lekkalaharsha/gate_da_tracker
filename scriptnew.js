@@ -1,3 +1,4 @@
+
 /* -------------------------
    Syllabus arrays (AI trimmed to top frequent topics)
 ------------------------- */
@@ -105,17 +106,17 @@ const leaveEnd   = new Date('2026-02-14');
 const amplitude = {
   'Probability & Statistics': 10,
   'Linear Algebra': 10,
-  'Calculus & Optimization': 8,
-  'Database': 12,
-  'Programming': 16,
-  'Machine Learning': 16
+  'Calculus & Optimization': 7,
+  'Database': 10,
+  'Programming': 15,
+  'Machine Learning': 15
 };
 
 /* Small map for explicit extra "practice" days per subject */
 const practiceAllocation = {
-  'Database': 0,
-  'AI': 0,
-  'Calculus & Optimization': 0
+  'Database': 3,
+  'AI': 2,
+  'Calculus & Optimization': 1
 };
 
 const oldAmplitude = {
@@ -1055,6 +1056,4 @@ window.addEventListener('load', ()=>{
     });
   });
 });
-
-
 
